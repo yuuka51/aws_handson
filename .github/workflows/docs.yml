@@ -5,8 +5,8 @@ on:
     branches:
       - main
     paths:
-      - "docs/**"
-      - "requirements-docs.txt"
+      - "amazon_bedrock_agencore_handson_202603/docs/**"
+      - "amazon_bedrock_agencore_handson_202603/requirements-docs.txt"
       - ".github/workflows/docs.yml"
   workflow_dispatch:
 
@@ -22,6 +22,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: amazon_bedrock_agencore_handson_202603
     steps:
       - uses: actions/checkout@v4
 
@@ -38,7 +41,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/_build/html
+          path: amazon_bedrock_agencore_handson_202603/docs/_build/html
 
   deploy:
     needs: build
